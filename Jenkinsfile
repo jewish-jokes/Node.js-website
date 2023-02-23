@@ -4,7 +4,9 @@ pipeline{
     stages {
         stage ('unit test'){
             steps{
-                sh 'npm test'
+                nodejs('Node.js'){
+                    sh 'npm test'
+                }
             }
         }
 
