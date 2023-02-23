@@ -21,12 +21,12 @@ pipeline{
         }
         stage ('login to docker hub'){
             steps{
-                echo 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage ('push image'){
             steps{
-                echo 'docker push jewishjokes/my_image:lts'
+                sh 'docker push jewishjokes/my_image:lts'
             }
         }
     }
