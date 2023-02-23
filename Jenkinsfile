@@ -20,11 +20,12 @@ pipeline{
             }
         }
         stage ('push image'){
-            docker.withRegistry('jewishjokes/my_image', 'docker.hub-credentials') {
-
+            steps{
+                docker.withRegistry('jewishjokes/my_image', 'docker.hub-credentials') {
                 def customImage = docker.build("my-image:latest")
                 customImage.push()
             }
+            } 
         }
     }
 }
