@@ -16,7 +16,7 @@ pipeline{
         }
         stage ('build image'){
             steps{
-                sh 'docker build . -t jewishjokes/my_image:lts'
+                sh 'docker build . -t jewishjokes/my_image:$BUILD_NUMBER'
             }
         }
         stage ('login to docker hub'){
@@ -26,14 +26,8 @@ pipeline{
         }
         stage ('push image'){
             steps{
-                sh 'docker push jewishjokes/my_image:lts'
+                sh 'docker push jewishjokes/my_image:$BUILD_NUMBER'
             }
         }
-    }
-}
-
-post {
-    always{
-        sh 'docker logout'
     }
 }
