@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('docker.hub-credentials')
+    }
+
     stages {
         stage ('unit test'){
             steps{
@@ -12,18 +16,24 @@ pipeline{
         }
         stage ('build image'){
             steps{
-                sh 'docker build . -t my_image:lts'
+                sh 'docker build . -t jewishjokes/my_image:lts'
             }
         }
         stage ('login to docker hub'){
             steps{
-                echo 'steps'
+                echo 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage ('push image'){
             steps{
-                echo 'steps'
+                echo 'docker push jewishjokes/my_image:lts'
             }
         }
+    }
+}
+
+post {
+    always{
+        sh 'docker logout'
     }
 }
