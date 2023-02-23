@@ -19,12 +19,12 @@ pipeline{
         }
         stage ('login to docker hub'){
             steps{
-
+                echo 'steps'
             }
         }
         stage ('push image'){
             steps{
-
+                echo 'steps'
             }
         }
     }
