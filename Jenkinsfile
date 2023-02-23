@@ -10,10 +10,21 @@ pipeline{
                 }
             }
         }
+        stage ('build image'){
+            steps{
+                docker('docker'){
+                    sh 'docker build .'
+                }
+            }
+        }
+        stage ('login to docker hub'){
+            steps{
 
-        stage ('intergration test'){
-            steps {
-                echo 'still working on it...'
+            }
+        }
+        stage ('push image'){
+            steps{
+
             }
         }
     }
