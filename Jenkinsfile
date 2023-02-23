@@ -12,19 +12,17 @@ pipeline{
         }
         stage ('build image'){
             steps{
-                docker('docker'){
-                    sh 'docker build .'
-                }
+                sh 'docker build . -t my_image:lts'
             }
         }
         stage ('login to docker hub'){
             steps{
-
+                echo 'steps'
             }
         }
         stage ('push image'){
             steps{
-
+                echo 'steps'
             }
         }
     }
